@@ -68,8 +68,8 @@ This module creates and manages the following resources:
 
 | Name | Version |
 |------|---------|
-| terraform | >=0.12.6, <0.14 |
-| google | >= 3.42.0 |
+| terraform | >= 0.12.26 |
+| google | >= 3.56.0 |
 | kubernetes | >= 1.13.0 |
 | spotinst | >= 1.27.0 |
 
@@ -77,7 +77,7 @@ This module creates and manages the following resources:
 
 | Name | Version |
 |------|---------|
-| google | >= 3.42.0 |
+| google | >= 3.56.0 |
 | spotinst | >= 1.27.0 |
 
 ## Inputs

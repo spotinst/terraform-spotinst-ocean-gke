@@ -31,7 +31,7 @@ resource "spotinst_ocean_gke_launch_spec_import" "this" {
 
 module "ocean-controller" {
   source  = "spotinst/ocean-controller/spotinst"
-  version = ">=0.10.0"
+  version = ">= 0.10.0"
 
   # Workaround for backward compatibility with Terraform =<0.13.
   # Should be replaced with `count` and `depends_on` in the future.
