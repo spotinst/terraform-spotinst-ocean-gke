@@ -20,7 +20,7 @@ A Terraform module to create a [Google Kubernetes Engine (GKE)](https://cloud.go
 
 ## Prerequisites
 
-For `kubectl` to connect and interface properly with your [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine) cluster, you have to install the `gcloud` CLI. `gcloud` can be installed as a part of the [Google Cloud SDK](https://cloud.google.com/sdk/). Instructions on how to install the following components can be found below:
+For `kubectl` to connect and interface properly with your [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine) cluster, you have to install the `gcloud` CLI. `gcloud` can be installed as a part of the [Google Cloud SDK](https://cloud.google.com/sdk/). Furthermore, for GCP, at least `Editor` permissions are needed to import an existing cluster. Instructions on how to install the following components can be found below:
 
 - [gcloud](https://cloud.google.com/sdk/docs/install)
 - [kubectl](https://kubernetes.io/docs/setup/production-environment/turnkey/gce/#installing-the-kubernetes-command-line-tools-on-your-workstation)
