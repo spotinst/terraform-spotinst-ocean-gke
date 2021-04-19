@@ -4,12 +4,13 @@ A Terraform module to create a [Google Kubernetes Engine (GKE)](https://cloud.go
 
 ## Table of Contents
 
-- [Usage](#usage)
 - [Prerequisites](#prerequisites)
+- [Usage](#usage)
 - [Examples](#examples)
-- [Resources](#resources)
 - [Requirements](#requirements)
 - [Providers](#providers)
+- [Modules](#modules)
+- [Resources](#resources)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
 - [Documentation](#documentation)
@@ -54,38 +55,29 @@ module "ocean-gke" {
 
 - [Simple Regional Cluster](https://github.com/spotinst/terraform-spotinst-ocean-gke/tree/master/examples/simple-regional)
 
-## Resources
-
-This module creates and manages the following resources:
-
-- google_container_cluster
-- google_container_node_pool
-- spotinst_ocean_gke_import
-- spotinst_ocean_gke_launch_spec_import
-
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | >= 3.56.0 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 1.13.0 |
-| <a name="requirement_spotinst"></a> [spotinst](#requirement\_spotinst) | >= 1.27.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | >= 3.39.0, <4.0.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 1.10, != 1.11.0 |
+| <a name="requirement_spotinst"></a> [spotinst](#requirement\_spotinst) | >= 1.38.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | >= 3.56.0 |
-| <a name="provider_spotinst"></a> [spotinst](#provider\_spotinst) | >= 1.27.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | >= 3.39.0, <4.0.0 |
+| <a name="provider_spotinst"></a> [spotinst](#provider\_spotinst) | >= 1.38.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_gke"></a> [gke](#module\_gke) | terraform-google-modules/kubernetes-engine/google | >= 12.0.0 |
-| <a name="module_ocean-controller"></a> [ocean-controller](#module\_ocean-controller) | spotinst/ocean-controller/spotinst | >= 0.10.0 |
+| <a name="module_gke"></a> [gke](#module\_gke) | terraform-google-modules/kubernetes-engine/google | >= 14.1.0 |
+| <a name="module_ocean-controller"></a> [ocean-controller](#module\_ocean-controller) | spotinst/ocean-controller/spotinst | 0.19.0 |
 
 ## Resources
 
@@ -106,6 +98,7 @@ This module creates and manages the following resources:
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | The name of the cluster (required) | `string` | n/a | yes |
 | <a name="input_cluster_resource_labels"></a> [cluster\_resource\_labels](#input\_cluster\_resource\_labels) | The GCE resource labels (a map of key/value pairs) to be applied to the cluster | `map(string)` | `{}` | no |
 | <a name="input_configure_ip_masq"></a> [configure\_ip\_masq](#input\_configure\_ip\_masq) | Enables the installation of ip masquerading, which is usually no longer required when using aliasied IP addresses. IP masquerading uses a kubectl call, so when you have a private cluster, you will need access to the API server | `bool` | `false` | no |
+| <a name="input_controller_image"></a> [controller\_image](#input\_controller\_image) | Set the Docker image name for the Ocean Controller that should be deployed | `string` | `"spotinst/kubernetes-cluster-controller"` | no |
 | <a name="input_create_ocean"></a> [create\_ocean](#input\_create\_ocean) | Controls whether Ocean should be created (it affects all Ocean resources) | `bool` | `true` | no |
 | <a name="input_create_service_account"></a> [create\_service\_account](#input\_create\_service\_account) | Defines if service account specified to run nodes should be created | `bool` | `true` | no |
 | <a name="input_database_encryption"></a> [database\_encryption](#input\_database\_encryption) | Application-layer Secrets Encryption settings. The object format is {state = string, key\_name = string}. Valid values of state are: "ENCRYPTED"; "DECRYPTED". key\_name is the name of a CloudKMS key | `list(object({ state = string, key_name = string }))` | <pre>[<br>  {<br>    "key_name": "",<br>    "state": "DECRYPTED"<br>  }<br>]</pre> | no |
@@ -123,6 +116,7 @@ This module creates and manages the following resources:
 | <a name="input_horizontal_pod_autoscaling"></a> [horizontal\_pod\_autoscaling](#input\_horizontal\_pod\_autoscaling) | Enable horizontal pod autoscaling addon | `bool` | `true` | no |
 | <a name="input_http_load_balancing"></a> [http\_load\_balancing](#input\_http\_load\_balancing) | Enable httpload balancer addon | `bool` | `true` | no |
 | <a name="input_identity_namespace"></a> [identity\_namespace](#input\_identity\_namespace) | Workload Identity namespace. (Default value of `enabled` automatically sets project based namespace `[project_id].svc.id.goog`) | `string` | `"enabled"` | no |
+| <a name="input_image_pull_policy"></a> [image\_pull\_policy](#input\_image\_pull\_policy) | Image pull policy (one of: Always, Never, IfNotPresent) | `string` | `"IfNotPresent"` | no |
 | <a name="input_initial_node_count"></a> [initial\_node\_count](#input\_initial\_node\_count) | The number of nodes to create in this cluster's default node pool | `number` | `0` | no |
 | <a name="input_instance_types"></a> [instance\_types](#input\_instance\_types) | A list of instance types | `list(string)` | `[]` | no |
 | <a name="input_ip_masq_link_local"></a> [ip\_masq\_link\_local](#input\_ip\_masq\_link\_local) | Whether to masquerade traffic to the link-local prefix (169.254.0.0/16) | `bool` | `false` | no |
@@ -152,7 +146,7 @@ This module creates and manages the following resources:
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The project ID to host the cluster in (required) | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The region to host the cluster in (optional if zonal cluster / required if regional) | `string` | `null` | no |
 | <a name="input_regional"></a> [regional](#input\_regional) | Whether is a regional cluster (zonal cluster if set false. WARNING: changing this after cluster creation is destructive!) | `bool` | `true` | no |
-| <a name="input_registry_project_id"></a> [registry\_project\_id](#input\_registry\_project\_id) | Project holding the Google Container Registry. If empty, we use the cluster project. If grant\_registry\_access is true, storage.objectViewer role is assigned on this project | `string` | `""` | no |
+| <a name="input_registry_project_ids"></a> [registry\_project\_ids](#input\_registry\_project\_ids) | Projects holding Google Container Registries. If empty, we use the cluster project. If a service account is created and the `grant_registry_access` variable is set to `true`, the `storage.objectViewer` role is assigned on these projects | `list(string)` | `[]` | no |
 | <a name="input_release_channel"></a> [release\_channel](#input\_release\_channel) | The release channel of this cluster. Accepted values are `UNSPECIFIED`, `RAPID`, `REGULAR` and `STABLE`. Defaults to `UNSPECIFIED` | `string` | `null` | no |
 | <a name="input_remove_default_node_pool"></a> [remove\_default\_node\_pool](#input\_remove\_default\_node\_pool) | Remove default node pool while setting up the cluster | `bool` | `true` | no |
 | <a name="input_resource_usage_export_dataset_id"></a> [resource\_usage\_export\_dataset\_id](#input\_resource\_usage\_export\_dataset\_id) | The ID of a BigQuery Dataset for using BigQuery as the destination of resource usage export | `string` | `""` | no |
@@ -169,8 +163,7 @@ This module creates and manages the following resources:
 
 | Name | Description |
 |------|-------------|
-| <a name="output_client_token"></a> [client\_token](#output\_client\_token) | OAuth2 access token used by the client to authenticate against the Google Cloud API |
-| <a name="output_cluster_ca_certificate"></a> [cluster\_ca\_certificate](#output\_cluster\_ca\_certificate) | Cluster ca certificate (base64 encoded) |
+| <a name="output_cluster_ca_certificate"></a> [cluster\_ca\_certificate](#output\_cluster\_ca\_certificate) | Cluster CA certificate (base64 encoded) |
 | <a name="output_cluster_endpoint"></a> [cluster\_endpoint](#output\_cluster\_endpoint) | Cluster endpoint |
 | <a name="output_cluster_horizontal_pod_autoscaling_enabled"></a> [cluster\_horizontal\_pod\_autoscaling\_enabled](#output\_cluster\_horizontal\_pod\_autoscaling\_enabled) | Whether horizontal pod autoscaling enabled |
 | <a name="output_cluster_http_load_balancing_enabled"></a> [cluster\_http\_load\_balancing\_enabled](#output\_cluster\_http\_load\_balancing\_enabled) | Whether http load balancing enabled |
@@ -184,6 +177,7 @@ This module creates and manages the following resources:
 | <a name="output_cluster_node_pools_names"></a> [cluster\_node\_pools\_names](#output\_cluster\_node\_pools\_names) | List of node pools names |
 | <a name="output_cluster_node_pools_versions"></a> [cluster\_node\_pools\_versions](#output\_cluster\_node\_pools\_versions) | List of node pools versions |
 | <a name="output_cluster_region"></a> [cluster\_region](#output\_cluster\_region) | Cluster region |
+| <a name="output_cluster_token"></a> [cluster\_token](#output\_cluster\_token) | OAuth2 access token used by the client to authenticate against the Google Cloud API |
 | <a name="output_cluster_type"></a> [cluster\_type](#output\_cluster\_type) | Cluster type (regional / zonal) |
 | <a name="output_cluster_zones"></a> [cluster\_zones](#output\_cluster\_zones) | List of zones in which the cluster resides |
 | <a name="output_identity_namespace"></a> [identity\_namespace](#output\_identity\_namespace) | Workload Identity namespace |

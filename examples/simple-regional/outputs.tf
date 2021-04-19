@@ -29,6 +29,12 @@ output "cluster_endpoint" {
   value       = module.ocean-gke.cluster_endpoint
 }
 
+output "cluster_token" {
+  sensitive   = true
+  description = "OAuth2 access token used by the client to authenticate against the Google Cloud API"
+  value       = module.ocean-gke.cluster_token
+}
+
 output "cluster_min_master_version" {
   description = "Minimum master kubernetes version"
   value       = module.ocean-gke.cluster_min_master_version
@@ -98,12 +104,6 @@ output "release_channel" {
 output "identity_namespace" {
   description = "Workload Identity namespace"
   value       = module.ocean-gke.identity_namespace
-}
-
-output "client_token" {
-  sensitive   = true
-  description = "OAuth2 access token used by the client to authenticate against the Google Cloud API"
-  value       = module.ocean-gke.client_token
 }
 
 output "ocean_cluster_id" {

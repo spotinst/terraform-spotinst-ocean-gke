@@ -1,15 +1,3 @@
-provider "spotinst" {
-  token   = var.spotinst_token
-  account = var.spotinst_account
-}
-
-provider "kubernetes" {
-  load_config_file       = false
-  host                   = "https://${module.gke.endpoint}"
-  token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(module.gke.ca_certificate)
-}
-
 resource "spotinst_ocean_gke_import" "this" {
   count      = var.create_ocean ? 1 : 0
   depends_on = [module.gke]
@@ -30,18 +18,15 @@ resource "spotinst_ocean_gke_launch_spec_import" "this" {
 }
 
 module "ocean-controller" {
-  source  = "spotinst/ocean-controller/spotinst"
-  version = ">= 0.10.0"
+  # TODO: upgrade to v0.23.0 once GKE supports hashicorp/kubernetes >2.
+  source     = "spotinst/ocean-controller/spotinst"
+  version    = "0.19.0"
+  depends_on = [module.gke]
 
-  # Workaround for backward compatibility with Terraform =<0.13.
-  # Should be replaced with `count` and `depends_on` in the future.
-  create_controller = var.create_ocean
-  module_depends_on = [module.gke]
-
-  # Credentials.
-  spotinst_token   = var.spotinst_token
-  spotinst_account = var.spotinst_account
-
-  # Configuration.
+  create_controller  = var.create_ocean
+  spotinst_token     = var.spotinst_token
+  spotinst_account   = var.spotinst_account
+  controller_image   = var.controller_image
+  image_pull_policy  = var.image_pull_policy
   cluster_identifier = local.ocean_controller_id
 }

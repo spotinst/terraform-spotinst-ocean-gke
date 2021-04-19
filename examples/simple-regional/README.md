@@ -13,7 +13,12 @@ To provision this example, run the following from within this directory:
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | >= 3.39.0, <4.0.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 1.10, != 1.11.0 |
+| <a name="requirement_spotinst"></a> [spotinst](#requirement\_spotinst) | >= 1.38.0 |
 
 ## Providers
 
@@ -51,7 +56,6 @@ No resources.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_client_token"></a> [client\_token](#output\_client\_token) | OAuth2 access token used by the client to authenticate against the Google Cloud API |
 | <a name="output_cluster_ca_certificate"></a> [cluster\_ca\_certificate](#output\_cluster\_ca\_certificate) | Cluster ca certificate (base64 encoded) |
 | <a name="output_cluster_endpoint"></a> [cluster\_endpoint](#output\_cluster\_endpoint) | Cluster endpoint |
 | <a name="output_cluster_horizontal_pod_autoscaling_enabled"></a> [cluster\_horizontal\_pod\_autoscaling\_enabled](#output\_cluster\_horizontal\_pod\_autoscaling\_enabled) | Whether horizontal pod autoscaling enabled |
@@ -66,6 +70,7 @@ No resources.
 | <a name="output_cluster_node_pools_names"></a> [cluster\_node\_pools\_names](#output\_cluster\_node\_pools\_names) | List of node pools names |
 | <a name="output_cluster_node_pools_versions"></a> [cluster\_node\_pools\_versions](#output\_cluster\_node\_pools\_versions) | List of node pools versions |
 | <a name="output_cluster_region"></a> [cluster\_region](#output\_cluster\_region) | Cluster region |
+| <a name="output_cluster_token"></a> [cluster\_token](#output\_cluster\_token) | OAuth2 access token used by the client to authenticate against the Google Cloud API |
 | <a name="output_cluster_type"></a> [cluster\_type](#output\_cluster\_type) | Cluster type (regional / zonal) |
 | <a name="output_cluster_zones"></a> [cluster\_zones](#output\_cluster\_zones) | List of zones in which the cluster resides |
 | <a name="output_identity_namespace"></a> [identity\_namespace](#output\_identity\_namespace) | Workload Identity namespace |

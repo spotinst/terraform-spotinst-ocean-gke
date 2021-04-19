@@ -1,6 +1,6 @@
 module "gke" {
   source  = "terraform-google-modules/kubernetes-engine/google"
-  version = ">= 12.0.0"
+  version = ">= 14.1.0"
 
   project_id                         = var.project_id
   name                               = var.cluster_name
@@ -36,7 +36,7 @@ module "gke" {
   monitoring_service                 = var.monitoring_service
   create_service_account             = var.create_service_account
   grant_registry_access              = var.grant_registry_access
-  registry_project_id                = var.registry_project_id
+  registry_project_ids               = var.registry_project_ids
   service_account                    = var.service_account
   basic_auth_username                = var.basic_auth_username
   basic_auth_password                = var.basic_auth_password

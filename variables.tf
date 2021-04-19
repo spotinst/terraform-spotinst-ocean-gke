@@ -197,10 +197,10 @@ variable "grant_registry_access" {
   default     = false
 }
 
-variable "registry_project_id" {
-  type        = string
-  description = "Project holding the Google Container Registry. If empty, we use the cluster project. If grant_registry_access is true, storage.objectViewer role is assigned on this project"
-  default     = ""
+variable "registry_project_ids" {
+  type        = list(string)
+  description = "Projects holding Google Container Registries. If empty, we use the cluster project. If a service account is created and the `grant_registry_access` variable is set to `true`, the `storage.objectViewer` role is assigned on these projects"
+  default     = []
 }
 
 variable "service_account" {
@@ -414,4 +414,16 @@ variable "create_ocean" {
   type        = bool
   description = "Controls whether Ocean should be created (it affects all Ocean resources)"
   default     = true
+}
+
+variable "controller_image" {
+  type        = string
+  description = "Set the Docker image name for the Ocean Controller that should be deployed"
+  default     = "spotinst/kubernetes-cluster-controller"
+}
+
+variable "image_pull_policy" {
+  type        = string
+  description = "Image pull policy (one of: Always, Never, IfNotPresent)"
+  default     = "IfNotPresent"
 }

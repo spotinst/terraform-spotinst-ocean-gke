@@ -28,7 +28,13 @@ output "cluster_zones" {
 output "cluster_endpoint" {
   sensitive   = true
   description = "Cluster endpoint"
-  value       = module.gke.endpoint
+  value       = "https://${module.gke.endpoint}"
+}
+
+output "cluster_token" {
+  sensitive   = true
+  description = "OAuth2 access token used by the client to authenticate against the Google Cloud API"
+  value       = data.google_client_config.default.access_token
 }
 
 output "cluster_min_master_version" {
@@ -58,7 +64,7 @@ output "cluster_master_version" {
 
 output "cluster_ca_certificate" {
   sensitive   = true
-  description = "Cluster ca certificate (base64 encoded)"
+  description = "Cluster CA certificate (base64 encoded)"
   value       = module.gke.ca_certificate
 }
 
@@ -100,12 +106,6 @@ output "release_channel" {
 output "identity_namespace" {
   description = "Workload Identity namespace"
   value       = module.gke.identity_namespace
-}
-
-output "client_token" {
-  sensitive   = true
-  description = "OAuth2 access token used by the client to authenticate against the Google Cloud API"
-  value       = base64encode(data.google_client_config.default.access_token)
 }
 
 // Spot's outputs

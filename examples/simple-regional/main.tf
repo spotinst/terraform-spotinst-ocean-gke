@@ -1,3 +1,15 @@
+provider "spotinst" {
+  token   = var.spotinst_token
+  account = var.spotinst_account
+}
+
+provider "kubernetes" {
+  host                   = module.ocean-gke.cluster_endpoint
+  token                  = module.ocean-gke.cluster_token
+  cluster_ca_certificate = base64decode(module.ocean-gke.cluster_ca_certificate)
+  load_config_file       = false
+}
+
 module "ocean-gke" {
   source = "../../"
 
