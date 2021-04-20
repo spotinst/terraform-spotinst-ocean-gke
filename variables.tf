@@ -1,4 +1,4 @@
-// Google's variables
+// region terraform-google-modules/kubernetes-engine
 
 variable "project_id" {
   type        = string
@@ -374,7 +374,9 @@ variable "node_pools_oauth_scopes" {
   }
 }
 
-// Spot's variables
+// endregion
+
+// region spotinst/ocean-gke
 
 variable "spotinst_token" {
   type        = string
@@ -416,6 +418,10 @@ variable "create_ocean" {
   default     = true
 }
 
+// endregion
+
+// region spotinst/ocean-controller
+
 variable "controller_image" {
   type        = string
   description = "Set the Docker image name for the Ocean Controller that should be deployed"
@@ -427,3 +433,5 @@ variable "image_pull_policy" {
   description = "Image pull policy (one of: Always, Never, IfNotPresent)"
   default     = "IfNotPresent"
 }
+
+// endregion

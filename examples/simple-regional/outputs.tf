@@ -1,3 +1,5 @@
+// region terraform-google-modules/kubernetes-engine
+
 output "cluster_name" {
   description = "Cluster name"
   value       = module.ocean-gke.cluster_name
@@ -106,6 +108,10 @@ output "identity_namespace" {
   value       = module.ocean-gke.identity_namespace
 }
 
+// endregion
+
+// region spotinst/ocean-gke
+
 output "ocean_cluster_id" {
   description = "The ID of the Ocean cluster"
   value       = module.ocean-gke.ocean_cluster_id
@@ -116,3 +122,4 @@ output "ocean_controller_id" {
   value       = module.ocean-gke.ocean_controller_id
 }
 
+// endregion

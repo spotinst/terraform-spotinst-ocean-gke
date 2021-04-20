@@ -1,12 +1,4 @@
-variable "spotinst_token" {
-  type        = string
-  description = "Spot Personal Access token"
-}
-
-variable "spotinst_account" {
-  type        = string
-  description = "Spot account ID"
-}
+// region terraform-google-modules/kubernetes-engine
 
 variable "project_id" {
   type        = string
@@ -67,3 +59,19 @@ variable "service_account" {
   description = "Service account to associate to the nodes in the cluster"
   default     = ""
 }
+
+// endregion
+
+// region spotinst/ocean-gke
+
+variable "spotinst_token" {
+  type        = string
+  description = "Spot Personal Access token"
+}
+
+variable "spotinst_account" {
+  type        = string
+  description = "Spot account ID"
+}
+
+// endregion
