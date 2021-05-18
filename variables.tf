@@ -425,7 +425,7 @@ variable "create_ocean" {
 variable "controller_image" {
   type        = string
   description = "Set the Docker image name for the Ocean Controller that should be deployed"
-  default     = "spotinst/kubernetes-cluster-controller"
+  default     = "gcr.io/spotinst-artifacts/kubernetes-cluster-controller"
 }
 
 variable "image_pull_policy" {
