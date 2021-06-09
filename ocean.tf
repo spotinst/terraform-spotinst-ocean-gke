@@ -11,9 +11,9 @@ resource "spotinst_ocean_gke_import" "this" {
 }
 
 resource "spotinst_ocean_gke_launch_spec_import" "this" {
-  count = var.create_ocean && length(var.node_pools) > 0 ? 1 : 0
+  count = var.create_ocean && length(var.node_pools) > 0 ? length(var.node_pools) : 0
 
-  ocean_id       = spotinst_ocean_gke_import.this[count.index].id
+  ocean_id       = spotinst_ocean_gke_import.this[0].id
   node_pool_name = var.node_pools[count.index].name
 }
 
