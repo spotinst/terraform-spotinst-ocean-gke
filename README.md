@@ -2,7 +2,7 @@
 
 # This module is deprecated. Following modules should be used instead to create Ocean Cluster and Virtual Node Group in GCP -
 - [spotinst/terraform-spotinst-ocean-gcp-k8s](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s) published on [the Terraform registry](https://registry.terraform.io/modules/spotinst/ocean-gcp-k8s/spotinst/latest)
-- [spotinst/terraform-spotinst-ocean-gcp-k8s-vng](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s-vng) published on [the Terraform registry](https://registry.terraform.io/modules/spotinst/ocean-aws-k8s-vng/spotinst/latest)
+- [spotinst/terraform-spotinst-ocean-gcp-k8s-vng](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s-vng) published on [the Terraform registry](https://registry.terraform.io/modules/spotinst/ocean-gcp-k8s-vng/spotinst/latest)
 
 ## This repository will not have active support any more.
 
