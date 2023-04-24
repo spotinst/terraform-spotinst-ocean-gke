@@ -1,5 +1,16 @@
 # Spot Ocean GKE Terraform Module
 
+# This module is deprecated and will be removed from the registry in 30 days.
+
+# Following modules should be used instead -
+- [For GKE Cluster Creation and Configuration](https://registry.terraform.io/modules/terraform-google-modules/kubernetes-engine/google/latest)
+- [For Spot Ocean Cluster Creation in GCP](https://registry.terraform.io/modules/spotinst/ocean-gcp-k8s/spotinst/latest)
+- [For Spot Ocean VNG Creation in GCP](https://registry.terraform.io/modules/spotinst/ocean-gcp-k8s-vng/spotinst/latest)
+
+## This repository will not have active support any more.
+
+---
+
 A Terraform module to create a [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine) cluster with [Spot Ocean](https://spot.io/products/ocean). The module will install the Ocean Controller into the cluster.
 
 ## Table of Contents
